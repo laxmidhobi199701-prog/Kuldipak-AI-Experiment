@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>॥ स्वतंत्र प्रहरी डैशबोर्ड ॥</title>
+    <style>
+        body { background: #0a0a0a; color: #00ffcc; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
+        .box { border: 2px solid #00ffcc; border-radius: 15px; padding: 20px; margin: 10px auto; max-width: 500px; box-shadow: 0 0 20px #00ffcc; }
+        h1 { color: #ff9900; text-shadow: 2px 2px #330000; }
+        .signal { font-size: 1.5em; font-weight: bold; color: #ff3300; animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+        .data { color: #ffffff; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+
+    <h1>॥ कुल-दीपक महासंहिता ॥</h1>
+    <p>प्रहरी: सोनू भाई (भीलवाड़ा-जयपुर)</p>
+
+    <div class="box">
+        <h3>लक्ष्य: २.५ लाख/माह (२०४७)</h3>
+        <p class="data">प्रतीक्षा और नीति का भविष्य सुरक्षित है।</p>
+    </div>
+
+    <div class="box">
+        <h3>आज का विशेष सिग्नल</h3>
+        <p class="signal" id="signal">॥ प्रहरी सक्रिय ॥: बाज़ार की नब्ज़ जाँची जा रही है...</p>
+    </div>
+
+    <div class="box">
+        <h3>निवेश का अनुशासन (SIP)</h3>
+        <p class="data">SBI Contra: ₹1,000</p>
+        <p class="data">SBI Midcap: ₹1,000</p>
+        <p class="data">SBI Small Cap: ₹500</p>
+    </div>
+
+    <script>
+        // यह स्क्रिप्ट आपके 04_Signal फोल्डर से प्रेरणा लेती है
+        setTimeout(() => {
+            document.getElementById('signal').innerHTML = "॥ विशेष सिग्नल ॥: बाज़ार में शुचिता का अवसर है। अतिरिक्त निवेश करें!";
+            document.getElementById('signal').style.color = "#00ff00";
+        }, 3000);
+    </script>
+
+</body>
+</html>
