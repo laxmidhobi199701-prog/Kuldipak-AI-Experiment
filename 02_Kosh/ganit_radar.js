@@ -1,32 +1,37 @@
 /**
  * फोल्डर: 02_Kosh
- * कार्य: गणितीय रडार (Market Volatility Analysis)
- * रचयिता: सोनू भाई
+ * कार्य: संपूर्ण बाज़ार विश्लेषण (Nifty, Midcap, Smallcap)
+ * रचयिता: सोनू भाई (भीलवाड़ा-जयपुर)
  */
 
-const GanitRadar = {
-    // १. बाज़ार की शुचिता का गणित (Volatility Score)
-    analyzeVolatility: function(niftyMove) {
-        let score = 0;
+const PurnBazarRadar = {
+    // १. पूरे बाज़ार की नब्ज़ पकड़ना
+    analyzeMarket: function(largeCap, midCap, smallCap) {
+        let shuchita_score = 0;
+
+        // बड़े कैप (SBI Contra का आधार)
+        if (largeCap < -1.0) shuchita_score += 3;
         
-        // अगर बाज़ार १.५% से ज़्यादा गिरा, तो 'स्वर्ण अवसर' (Score: 10)
-        if (niftyMove <= -1.5) { score = 10; }
-        // अगर बाज़ार ०.५% से १.५% के बीच गिरा, तो 'शुभ अवसर' (Score: 7)
-        else if (niftyMove < -0.5 && niftyMove > -1.5) { score = 7; }
-        // अगर बाज़ार स्थिर है, तो 'धैर्य' (Score: 5)
-        else { score = 5; }
+        // मिडकैप (SBI Midcap का आधार)
+        if (midCap < -1.5) shuchita_score += 4;
         
-        return score;
+        // स्मॉलकैप (SBI Small Cap का आधार)
+        if (smallCap < -2.0) shuchita_score += 5;
+
+        return this.generateSignal(shuchita_score);
     },
 
-    // २. फंड्स की शक्ति का अनुमान
-    fundPower: function(score) {
-        if (score === 10) return "॥ महा-शक्ति ॥: SBI Small Cap में अतिरिक्त आहुति दें।";
-        if (score === 7) return "॥ मध्यम-शक्ति ॥: SBI Midcap पर ध्यान दें।";
-        return "॥ शांत-शक्ति ॥: अपनी ₹2,500 की नियमित SIP चलने दें।";
+    // २. स्कोर के आधार पर 'विशेष सिग्नल'
+    generateSignal: function(score) {
+        if (score >= 9) {
+            return "॥ महा-शुचिता ॥: पूरे बाज़ार में गिरावट है। आज का निवेश २०२७-२०४७ की सबसे बड़ी जीत होगी!";
+        } else if (score >= 4) {
+            return "॥ शुचिता अवसर ॥: बाज़ार में कुछ हिस्सों (Mid/Small) में सुधार है। ₹2,500 के अलावा थोड़ा और पुरुषार्थ करें।";
+        } else {
+            return "॥ धैर्य काल ॥: बाज़ार संतुलित है। अपनी २,५०० की नियमित तपस्या जारी रखें।";
+        }
     }
 };
 
-// उदाहरण: मान लीजिए आज बाज़ार १.८% गिरा
-let currentScore = GanitRadar.analyzeVolatility(-1.8);
-console.log(GanitRadar.fundPower(currentScore));
+// उदाहरण: अगर निफ्टी -0.5%, मिडकैप -1.8%, और स्मॉलकैप -2.5% है
+console.log(PurnBazarRadar.analyzeMarket(-0.5, -1.8, -2.5));
