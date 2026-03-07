@@ -1,15 +1,15 @@
-name: Prahari Live Pulse
+name: Prahari Live Pulse 2026-2047
 on:
   schedule:
-    - cron: '30 3 * * 1-5' # सोमवार से शुक्रवार, भारतीय समय सुबह 9:00 बजे
-  workflow_dispatch: # हाथ से चलाने के लिए
+    - cron: '30 3 * * 1-5' # सोमवार से शुक्रवार, सुबह 9:00 बजे (IST)
+  workflow_dispatch:
 
 jobs:
-  update-signal:
+  prahari_action:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: 'Check Market and Update Signal'
+      - uses: actions/checkout@v3
+      - name: Run Market Analysis
         run: |
-          echo "॥ प्रहरी जाग्रत ॥: बाज़ार का विश्लेषण किया जा रहा है..."
-          # यहाँ हम आगे असली बाज़ार का डेटा खींचने वाला कोड जोड़ेंगे
+          node 04_Signal/live_fetch.js
+          echo "॥ शुचिता रिपोर्ट ॥: बाज़ार का विश्लेषण सफलतापूर्वक पूर्ण हुआ।"
