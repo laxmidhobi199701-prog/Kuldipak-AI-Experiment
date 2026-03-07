@@ -1,0 +1,15 @@
+name: Prahari Live Pulse
+on:
+  schedule:
+    - cron: '30 3 * * 1-5' # सोमवार से शुक्रवार, भारतीय समय सुबह 9:00 बजे
+  workflow_dispatch: # हाथ से चलाने के लिए
+
+jobs:
+  update-signal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Check Market and Update Signal'
+        run: |
+          echo "॥ प्रहरी जाग्रत ॥: बाज़ार का विश्लेषण किया जा रहा है..."
+          # यहाँ हम आगे असली बाज़ार का डेटा खींचने वाला कोड जोड़ेंगे
