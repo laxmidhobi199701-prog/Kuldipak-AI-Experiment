@@ -2,45 +2,77 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>॥ स्वतंत्र प्रहरी डैशबोर्ड ॥</title>
     <style>
-        body { background: #0a0a0a; color: #00ffcc; font-family: 'Courier New', monospace; text-align: center; padding: 20px; }
-        .box { border: 2px solid #00ffcc; border-radius: 15px; padding: 20px; margin: 10px auto; max-width: 500px; box-shadow: 0 0 20px #00ffcc; }
-        h1 { color: #ff9900; text-shadow: 2px 2px #330000; }
-        .signal { font-size: 1.5em; font-weight: bold; color: #ff3300; animation: blinker 1s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
-        .data { color: #ffffff; font-size: 1.2em; }
+        body { background: #050505; color: #00ffcc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; margin: 0; }
+        .container { max-width: 500px; margin: 20px auto; border: 1px solid #222; border-radius: 25px; background: linear-gradient(145deg, #0a0a0a, #151515); padding: 25px; box-shadow: 0 15px 35px rgba(0, 255, 204, 0.1); }
+        h1 { color: #ffbb00; letter-spacing: 1px; font-size: 1.8em; margin-bottom: 5px; }
+        .subtitle { color: #666; font-size: 0.9em; margin-bottom: 25px; }
+        
+        /* धड़कता हुआ सिग्नल */
+        .signal-box { font-size: 1.3em; padding: 25px; border-radius: 20px; background: #111; margin: 20px 0; border: 1px solid #00ffcc; position: relative; overflow: hidden; }
+        .signal-box::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(0,255,204,0.1), transparent); animation: shine 3s infinite; }
+        @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
+        
+        .card { background: #1a1a1a; border-radius: 15px; padding: 18px; margin: 15px 0; border-left: 5px solid #ffbb00; text-align: left; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); }
+        .fund-row { display: flex; justify-content: space-between; border-bottom: 1px solid #2a2a2a; padding: 10px 0; font-size: 0.95em; }
+        .total-box { text-align: right; font-weight: bold; color: #ffbb00; font-size: 1.2em; margin-top: 10px; }
+        
+        .timer-text { font-size: 0.85em; color: #0088ff; margin-top: 10px; font-weight: bold; }
+        .footer { font-size: 0.7em; color: #444; margin-top: 40px; border-top: 1px solid #222; padding-top: 10px; }
     </style>
 </head>
 <body>
 
-    <h1>॥ कुल-दीपक महासंहिता ॥</h1>
-    <p>प्रहरी: सोनू भाई (भीलवाड़ा-जयपुर)</p>
+<div class="container">
+    <h1>॥ कुल-दीपक प्रहरी ॥</h1>
+    <div class="subtitle">भीलवाड़ा-जयपुर | शुचिता मार्ग</div>
 
-    <div class="box">
-        <h3>लक्ष्य: २.५ लाख/माह (२०४७)</h3>
-        <p class="data">प्रतीक्षा और नीति का भविष्य सुरक्षित है।</p>
+    <div class="signal-box" id="main-signal">
+        <span style="color: #888;">प्रहरी जाग्रत हो रहा है...</span>
     </div>
 
-    <div class="box">
-        <h3>आज का विशेष सिग्नल</h3>
-        <p class="signal" id="signal">॥ प्रहरी सक्रिय ॥: बाज़ार की नब्ज़ जाँची जा रही है...</p>
+    <div class="card">
+        <h3 style="margin: 0 0 10px 0; color: #00ffcc; font-size: 1.1em;">त्रिशक्ति मासिक तपस्या (SIP)</h3>
+        <div class="fund-row"><span>SBI Contra (धैर्य)</span> <span>₹1,000</span></div>
+        <div class="fund-row"><span>SBI Midcap (विकास)</span> <span>₹1,000</span></div>
+        <div class="fund-row"><span>SBI Small Cap (साहस)</span> <span>₹500</span></div>
+        <div class="total-box">कुल आहुति: ₹2,500</div>
     </div>
 
-    <div class="box">
-        <h3>निवेश का अनुशासन (SIP)</h3>
-        <p class="data">SBI Contra: ₹1,000</p>
-        <p class="data">SBI Midcap: ₹1,000</p>
-        <p class="data">SBI Small Cap: ₹500</p>
+    <div class="card" style="border-left-color: #0088ff;">
+        <h3 style="margin: 0 0 5px 0; color: #0088ff; font-size: 1.1em;">लक्ष्य: २५ जनवरी २०४७</h3>
+        <p style="margin: 5px 0; font-size: 0.9em;">प्रतीक्षा और नीति का भविष्य स्वर्णमयी है।</p>
+        <div id="countdown" class="timer-text">गणना की जा रही है...</div>
     </div>
 
-    <script>
-        // यह स्क्रिप्ट आपके 04_Signal फोल्डर से प्रेरणा लेती है
-        setTimeout(() => {
-            document.getElementById('signal').innerHTML = "॥ विशेष सिग्नल ॥: बाज़ार में शुचिता का अवसर है। अतिरिक्त निवेश करें!";
-            document.getElementById('signal').style.color = "#00ff00";
-        }, 3000);
-    </script>
+    <p class="footer">ID: laxmidhobi199701-prog | स्वतंत्र प्रहरी २.०</p>
+</div>
+
+<script>
+    // १. विशेष सिग्नल का 'रूहानी' अपडेट
+    setTimeout(() => {
+        const signal = document.getElementById('main-signal');
+        signal.innerHTML = "<b style='color: #00ff00;'>॥ विशेष सिग्नल ॥</b><br><small style='color: #ccc;'>सोनू भाई, बाज़ार में 'शुचिता' का अवसर है।</small>";
+        signal.style.borderColor = "#00ff00";
+        signal.style.boxShadow = "0 0 15px rgba(0, 255, 0, 0.2)";
+    }, 2500);
+
+    // २. काल गणना (Target: 2047)
+    function updateTimer() {
+        const target = new Date("January 25, 2047").getTime();
+        const now = new Date().getTime();
+        const diff = target - now;
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        
+        document.getElementById('countdown').innerHTML = "तपस्या के " + days + " दिन और " + hours + " घंटे शेष हैं।";
+    }
+    setInterval(updateTimer, 1000 * 60); // हर मिनट अपडेट
+    updateTimer();
+</script>
 
 </body>
 </html>
