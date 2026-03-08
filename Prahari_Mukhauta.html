@@ -3,144 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>॥ स्वतंत्र प्रहरी ६.० ॥</title>
+    <title>॥ स्वतंत्र प्रहरी : शून्य-अनंत ॥</title>
     <style>
-        :root { --neon: #00ffcc; --gold: #ffbb00; --bg: #000; --goal: #00ff00; --card: #0a0a0a; }
-        body { background: var(--bg); color: var(--neon); font-family: 'Segoe UI', serif; margin: 0; padding-bottom: 50px; }
+        :root { --gold: #ffcc00; --neon: #00ffcc; --bg: #000; --sun: #ff8800; --royal: #7000ff; }
+        body { background: var(--bg); color: var(--neon); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* १. सिक्योरिटी और लॉक */
-        #lockScreen { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .lock-input { background: #111; border: 1px solid var(--gold); color: var(--gold); padding: 15px; border-radius: 12px; font-size: 1.5em; width: 180px; text-align: center; outline: none; margin-bottom: 20px; }
+        /* १. शून्य-अनंत एनीमेशन (The Infinity Glow) */
+        @keyframes infinity-glow {
+            0% { text-shadow: 0 0 5px var(--gold); }
+            50% { text-shadow: 0 0 20px var(--sun), 0 0 30px var(--gold); }
+            100% { text-shadow: 0 0 5px var(--gold); }
+        }
 
-        /* २. लेआउट */
-        .container { max-width: 500px; margin: auto; padding: 15px; display: none; }
-        .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 15px; border: 1px solid #1a1a1a; border-left: 5px solid var(--gold); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        /* २. प्रवेश द्वार */
+        #lockScreen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.8s; }
+        .lock-box { border: 2px solid var(--gold); padding: 40px; border-radius: 30px; text-align: center; box-shadow: 0 0 30px rgba(255,204,0,0.2); }
+        input { background: #111; border: 1px solid var(--gold); color: var(--gold); padding: 15px; border-radius: 12px; font-size: 1.5em; width: 150px; text-align: center; outline: none; margin: 20px 0; }
+
+        /* ३. मुख्य साम्राज्य लेआउट */
+        .container { max-width: 450px; margin: auto; padding: 15px; display: none; }
+        .card { background: #080808; border-radius: 25px; padding: 25px; margin-bottom: 20px; border: 1px solid #1a1a1a; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card::before { content: "∞"; position: absolute; top: 10px; right: 15px; color: #1a1a1a; font-size: 2em; }
         
-        /* ३. प्रोग्रेस और माइलस्टोन */
-        .milestone-container { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.7em; color: #555; }
-        .active-goal { color: var(--goal); font-weight: bold; }
+        /* ४. त्रिकालदर्शी मीटर */
+        .tri-kal { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; border-top: 1px solid #222; padding-top: 15px; margin-top: 15px; }
+        .label { font-size: 0.6em; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+        .value { font-size: 1.1em; color: #fff; font-weight: bold; display: block; margin-top: 5px; }
 
-        /* ४. तिजोरी और AI सेक्शन */
-        .vault-item { background: #111; padding: 10px; border-radius: 8px; margin-top: 5px; font-size: 0.8em; display: flex; justify-content: space-between; border-bottom: 1px solid #222; }
-        .ai-msg { font-style: italic; color: #ccc; font-size: 0.85em; border-left: 2px solid var(--neon); padding-left: 10px; margin-top: 10px; }
+        .progress-circle { width: 100%; background: #111; height: 8px; border-radius: 10px; margin-top: 15px; overflow: hidden; }
+        .fill { height: 100%; background: linear-gradient(90deg, var(--sun), var(--gold)); width: 0%; transition: 1s ease-in-out; }
 
-        /* ५. बाज़ार सिग्नल */
-        .market-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.75em; font-weight: bold; margin-bottom: 10px; }
-        .up { background: rgba(0, 255, 0, 0.1); color: var(--goal); border: 1px solid var(--goal); }
-        .down { background: rgba(255, 0, 0, 0.1); color: #ff4444; border: 1px solid #ff4444; }
-
-        button { background: var(--gold); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        button { background: var(--gold); color: #000; border: none; padding: 12px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1em; }
+        .guru-msg { font-size: 0.9em; font-style: italic; color: #ccc; line-height: 1.6; border-left: 3px solid var(--gold); padding-left: 15px; text-align: left; }
     </style>
 </head>
 <body>
 
     <div id="lockScreen">
-        <h2 style="color:var(--gold)">॥ स्वतंत्र प्रहरी ६.० ॥</h2>
-        <input type="password" id="passCode" class="lock-input" placeholder="••••">
-        <button onclick="unlock()">सिद्धि मार्ग खोलें</button>
+        <div class="lock-box">
+            <h1 style="color:var(--gold); margin:0; animation: infinity-glow 3s infinite;">॥ शून्य ॥</h1>
+            <input type="password" id="passCode" placeholder="••••" inputmode="numeric">
+            <br>
+            <button onclick="unlock()">अनंत की ओर</button>
+        </div>
     </div>
 
     <div class="container" id="mainApp">
-        <header style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="color:var(--gold); margin:0;">प्रतीक्षा एवं नीति साम्राज्य</h3>
-            <span id="liveClock" style="font-size:0.7em; color:#666;"></span>
+        <header style="display:flex; justify-content:space-between; align-items:center; padding:10px 0;">
+            <div style="color:var(--gold); font-weight:bold; letter-spacing:1px;">स्वतंत्र प्रहरी ९.५</div>
+            <div id="liveClock" style="color:#444; font-size:0.8em;"></div>
         </header>
 
-        <div class="card" style="border-left-color: #0088ff;">
-            <div id="marketStatus" class="market-badge up">बाज़ार पहरा: सक्रिय</div>
-            <div id="signalText" style="font-size:0.9em; font-weight:bold;">बाज़ार स्थिर है, तपस्या जारी रखें।</div>
-        </div>
-
-        <div class="card" style="border-left-color: var(--goal);">
-            <div style="font-size:0.8em; color:#888;">भविष्य की तिजोरी (10Cr Target)</div>
-            <div id="totalWealth" style="font-size:2.2em; font-weight:bold; color:#fff; text-shadow:0 0 10px var(--goal);">₹0</div>
+        <div class="card" style="border-top: 4px solid var(--gold);">
+            <div class="label" style="color:var(--gold)">सिद्धि का शिखर (२०४७)</div>
+            <div id="wealthValue" style="font-size:2.5em; font-weight:bold; color:#fff; margin:10px 0;">₹0</div>
             
-            <div class="milestone-container">
-                <span id="m1">1Cr</span> <span id="m2">5Cr</span> <span id="m3" class="active-goal">10Cr</span>
+            <div class="tri-kal">
+                <div><span class="label">शून्य (Past)</span><span class="value">१३/०२/२६</span></div>
+                <div><span class="label">वर्तमान</span><span id="curStatus" class="value" style="color:var(--neon)">स्थिर</span></div>
+                <div><span class="label">अनंत (Goal)</span><span class="value">१० करोड़</span></div>
             </div>
-            <div style="background:#111; height:8px; border-radius:10px; margin-top:10px;">
-                <div id="goalBar" style="background:var(--goal); height:100%; width:0%; border-radius:10px; transition:1s;"></div>
+
+            <div class="progress-circle">
+                <div id="goalFill" class="fill"></div>
             </div>
+            <div id="percentText" style="font-size:0.6em; color:#444; text-align:right; margin-top:5px;">0.000000%</div>
         </div>
 
-        <div class="card" style="border-left-color: #ff00ff;">
-            <div style="font-size:0.9em; font-weight:bold; color:#ff00ff;">आर्टिफिशियल इंटेलिजेंस (Gemini)</div>
-            <div id="aiAdvice" class="ai-msg">"सोनू भाई, आज का धैर्य कल की समृद्धि है।"</div>
-        </div>
-
-        <div class="card" style="border-left-color: #fff;">
-            <div style="font-size:0.9em; font-weight:bold; margin-bottom:10px;">दस्तावेज़ तिजोरी (Secure)</div>
-            <div class="vault-item"><span>Udyam Certificate</span> <button onclick="alert('Opening Secure Link...')">View</button></div>
-            <div class="vault-item"><span>SIP Purchase Receipts</span> <button onclick="alert('Loading Drive...')">View</button></div>
-            <div class="vault-item"><span>Family Insurance</span> <button onclick="alert('Secure Access...')">View</button></div>
-        </div>
-
-        <div class="card">
-            <div style="font-size:0.8em; color:#888; display:flex; justify-content:space-between;">
-                <span>२०४७ सिद्धि यात्रा:</span>
-                <span id="percent" style="color:var(--neon)">0.000000%</span>
-            </div>
-            <div style="background:#111; height:10px; border-radius:10px; margin-top:10px; border:1px solid #222;">
-                <div id="pBar" style="background:linear-gradient(90deg, var(--gold), var(--neon)); height:100%; width:0%; transition:1s;"></div>
+        <div class="card" style="border-top: 4px solid var(--royal);">
+            <div class="label" style="color:var(--royal); margin-bottom:10px;">॥ गुरु वाणी एवं सूर्योदय ॥</div>
+            <div id="guruAadesh" class="guru-msg">"सोनू, सूर्य की तरह निरंतर रहो, साम्राज्य स्वयं बनेगा।"</div>
+            <div id="stepUpReminder" style="display:none; margin-top:15px; background:rgba(255,0,0,0.1); padding:10px; border-radius:10px; border:1px dashed red;">
+                <p style="font-size:0.8em; margin:0 0 10px 0;">सोनू, क्या आपने इस वर्ष का ₹५०० का संकल्प पूर्ण किया?</p>
+                <button onclick="confirmStep()" style="padding:5px 15px; font-size:0.8em; background:red; color:white;">हाँ, संकल्प पूर्ण</button>
             </div>
         </div>
 
-        <button onclick="relock()" style="background:none; border:none; color:#333; width:100%; font-size:0.8em;">Logout</button>
+        <div class="card" style="border-top: 4px solid #ff0055;">
+            <div class="label" style="color:#ff0055; margin-bottom:10px;">॥ अनंत कालचक्र ॥</div>
+            <div style="font-size:0.85em; text-align:left; color:#eee;">
+                📅 <b>लक्ष्य तिथि:</b> २५ जनवरी २०४७<br>
+                ⏳ <b>शेष तपस्या:</b> <span id="daysLeft">0</span> दिन
+            </div>
+        </div>
+
+        <button onclick="logout()" style="background:none; border:none; color:#222; font-size:0.8em; margin-top:20px;">Logout</button>
     </div>
 
 <script>
-    const S_DATE = new Date("February 13, 2026").getTime();
-    const E_DATE = new Date("January 25, 2047").getTime();
-    const TARGET = 100000000; // 10 Crore
+    const START_DATE = new Date("February 13, 2026").getTime();
+    const END_DATE = new Date("January 25, 2047").getTime();
+    const TARGET_AMT = 100000000;
 
-    window.onload = () => { if(localStorage.getItem('prahari_v6') === 'on') showApp(); };
+    // चेक करें कि क्या पहले से लॉगिन है
+    if(localStorage.getItem('prahari_auth') === 'true') { showMain(); }
 
     function unlock() {
-        if(document.getElementById('passCode').value === "1994") {
-            localStorage.setItem('prahari_v6', 'on');
-            showApp();
-        } else { alert("गलत कोड!"); }
+        const pin = document.getElementById('passCode').value;
+        if(pin === "1994") {
+            localStorage.setItem('prahari_auth', 'true');
+            showMain();
+        } else { alert("त्रुटि: केवल १९९४ की चाबी ही मान्य है।"); }
     }
 
-    function showApp() {
-        document.getElementById('lockScreen').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
-        runEngine();
+    function showMain() {
+        document.getElementById('lockScreen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('lockScreen').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            startEngine();
+        }, 800);
     }
 
-    function relock() { localStorage.removeItem('prahari_v6'); location.reload(); }
+    function logout() { localStorage.removeItem('prahari_auth'); location.reload(); }
 
-    function runEngine() {
+    function confirmStep() {
+        localStorage.setItem('stepup_' + new Date().getFullYear(), 'true');
+        location.reload();
+    }
+
+    function startEngine() {
         setInterval(() => {
             const now = new Date();
             const nowT = now.getTime();
 
-            // १. १० करोड़ का लाइव प्रोग्रेस
-            const yrs = (nowT - S_DATE) / (1000*60*60*24*365.25);
-            const sip = 2500 * Math.pow(1.20, Math.floor(yrs));
-            const val = sip * ((Math.pow(1.0125, yrs * 12) - 1) / 0.0125);
-            document.getElementById('totalWealth').innerHTML = "₹" + Math.round(val).toLocaleString('hi-IN');
+            // १. १० करोड़ का 'अनंत' गणित (Step-up Compounding)
+            const diffInYears = (nowT - START_DATE) / (1000 * 60 * 60 * 24 * 365.25);
+            let growthMultiplier = 1;
+            for(let i=0; i<Math.floor(diffInYears); i++) {
+                if(localStorage.getItem('stepup_' + (2026+i)) === 'true') growthMultiplier *= 1.20;
+            }
             
-            // २. माइलस्टोन ट्रैकिंग
-            const progressToGoal = (val / TARGET) * 100;
-            document.getElementById('goalBar').style.width = Math.min(progressToGoal, 100) + "%";
+            const currentSIP = 2500 * growthMultiplier;
+            const currentVal = currentSIP * ((Math.pow(1.0125, diffInYears * 12) - 1) / 0.0125);
             
-            // ३. २०४७ यात्रा
-            const p = (((nowT - S_DATE) / (E_DATE - S_DATE)) * 100).toFixed(6);
-            document.getElementById('pBar').style.width = p + "%";
-            document.getElementById('percent').innerHTML = p + "%";
+            document.getElementById('wealthValue').innerHTML = "₹" + Math.round(currentVal).toLocaleString('hi-IN');
 
-            // ४. मार्केट सिग्नल (Real-time Sim)
-            const signalBox = document.getElementById('marketStatus');
-            const stext = document.getElementById('signalText');
-            if(now.getSeconds() % 20 < 5) { // सिमुलेशन: हर २० सेकंड में बाज़ार चेक
-                signalBox.className = "market-badge down";
-                signalBox.innerHTML = "🔥 विशेष सिग्नल";
-                stext.innerHTML = "बाज़ार में गिरावट है! आज टॉप-अप करने का सही समय है।";
-            } else {
-                signalBox.className = "market-badge up";
-                signalBox.innerHTML = "✅ बाज़ार स्थिर";
-                stext.innerHTML = "स्थिति सामान्य है। आपकी SIP १० करोड़ की ओर बढ़ रही है।";
+            // २. प्रोग्रेस और समय का पहरा
+            const totalProgress = (currentVal / TARGET_AMT) * 100;
+            document.getElementById('goalFill').style.width = Math.min(totalProgress, 100) + "%";
+            
+            const timeProgress = (((nowT - START_DATE) / (END_DATE - START_DATE)) * 100).toFixed(6);
+            document.getElementById('percentText').innerHTML = timeProgress + "%";
+            document.getElementById('daysLeft').innerHTML = Math.floor((END_DATE - nowT) / (1000 * 60 * 60 * 24));
+
+            // ३. सूर्योदय ज्ञान (Dynamic Guidance)
+            const hr = now.getHours();
+            const guru = document.getElementById('guruAadesh');
+            if(hr >= 5 && hr < 11) guru.innerHTML = "सोनू, सूर्योदय का तेज तुम्हारे व्यापार में झलके। आज नई ऊर्जा से काम करो।";
+            else if(hr >= 11 && hr < 17) guru.innerHTML = "मध्याह्न का सूरज गवाह है तुम्हारी मेहनत का। १० करोड़ के संकल्प से डिगना मत।";
+            else guru.innerHTML = "संध्या काल चिंतन का है। आज की साख कल का साम्राज्य बनेगी।";
+
+            // ४. २८ अगस्त का पहरा
+            if(now.getMonth() === 7 && now.getDate() >= 28 && !localStorage.getItem('stepup_' + now.getFullYear())) {
+                document.getElementById('stepUpReminder').style.display = 'block';
             }
 
             document.getElementById('liveClock').innerHTML = now.toLocaleTimeString();
