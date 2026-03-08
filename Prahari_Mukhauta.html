@@ -3,90 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>॥ स्वतंत्र प्रहरी - अनंत यात्रा ॥</title>
+    <title>॥ स्वतंत्र प्रहरी - २०४७ संकल्प ॥</title>
     <style>
-        body { background: #050505; color: #00ffcc; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 15px; margin: 0; }
-        .container { max-width: 450px; margin: 10px auto; border: 1px solid #222; border-radius: 30px; background: #0a0a0a; padding: 20px; box-shadow: 0 20px 50px rgba(0, 255, 204, 0.1); }
-        h1 { color: #ffbb00; font-size: 1.6em; margin: 5px 0; }
+        :root { --neon-green: #00ffcc; --gold: #ffbb00; --red-alert: #ff0000; --vault-pink: #ff00ff; }
+        body { background: #050505; color: var(--neon-green); font-family: 'Segoe UI', sans-serif; text-align: center; padding: 15px; margin: 0; transition: background 1s; }
+        .container { max-width: 450px; margin: 10px auto; border: 1px solid #222; border-radius: 35px; background: rgba(10, 10, 10, 0.95); padding: 20px; box-shadow: 0 20px 50px rgba(0, 255, 204, 0.1); border: 1px solid #333; }
         
-        /* १. प्रगति पट्टी (Progress Bar) */
-        .progress-container { background: #1a1a1a; border-radius: 20px; height: 12px; margin: 15px 0; overflow: hidden; border: 1px solid #333; }
-        .progress-bar { background: linear-gradient(90deg, #ffbb00, #00ffcc); height: 100%; width: 0%; transition: width 2s ease-in-out; }
+        h1 { color: var(--gold); font-size: 1.7em; margin: 5px 0; text-shadow: 0 0 15px rgba(255, 187, 0, 0.2); }
+        .subtitle { color: #666; font-size: 0.8em; margin-bottom: 20px; }
+
+        /* प्रगति पट्टी */
+        .progress-box { text-align: left; font-size: 0.75em; color: #888; margin-top: 15px; }
+        .progress-container { background: #1a1a1a; border-radius: 20px; height: 10px; margin: 8px 0 20px 0; overflow: hidden; border: 1px solid #333; }
+        .progress-bar { background: linear-gradient(90deg, var(--gold), var(--neon-green)); height: 100%; width: 0%; transition: width 2s ease-in-out; }
+
+        /* जादुई सिग्नल */
+        .signal-box { font-size: 1.1em; padding: 20px; border-radius: 20px; background: #111; margin: 15px 0; border: 1px solid #444; position: relative; transition: all 0.5s; }
+        .pulse-green { animation: pulse-g 2s infinite; border-color: var(--neon-green); color: var(--neon-green); }
+        @keyframes pulse-g { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.3); } 70% { box-shadow: 0 0 0 10px rgba(0, 255, 204, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 204, 0); } }
+
+        .card { background: #151515; border-radius: 22px; padding: 18px; margin: 15px 0; border-left: 5px solid var(--gold); text-align: left; box-shadow: 5px 5px 20px rgba(0,0,0,0.6); }
+        .fund-row { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding: 8px 0; font-size: 0.9em; }
         
-        .card { background: #151515; border-radius: 20px; padding: 15px; margin: 12px 0; border-left: 4px solid #ffbb00; text-align: left; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); }
-        
-        /* २. गुप्त डायरी (Secret Notes) */
-        .diary-box { background: #1a1a1a; border: 1px dashed #444; border-radius: 15px; padding: 10px; color: #aaa; font-style: italic; font-size: 0.9em; min-height: 60px; }
-        
-        .signal-box { font-size: 1.1em; padding: 15px; border-radius: 15px; background: #111; border: 1px solid #00ff00; animation: pulse 2s infinite; color: #00ff00; }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); } }
-        
-        .timer-text { font-size: 0.8em; color: #0088ff; text-align: center; font-weight: bold; }
-        .val-text { font-size: 1.5em; color: #fff; text-shadow: 0 0 10px #ff00ff; text-align: center; }
+        /* तिजोरी */
+        .vault-card { border-left-color: var(--vault-pink); background: linear-gradient(135deg, #1a1a1a 0%, #251025 100%); }
+        .future-val { font-size: 1.8em; color: #fff; font-weight: bold; text-align: center; margin: 10px 0; text-shadow: 0 0 15px var(--vault-pink); }
+
+        .timer-text { font-size: 0.85em; color: #0088ff; font-weight: bold; margin-top: 15px; }
+        .footer { font-size: 0.6em; color: #333; margin-top: 30px; border-top: 1px solid #111; padding-top: 10px; }
     </style>
 </head>
-<body>
+<body id="mainBody">
 
 <div class="container">
-    <h1>॥ स्वतंत्र प्रहरी ॥</h1>
-    <div style="color: #666; font-size: 0.8em;">भीलवाड़ा की शुचिता | २०२६ - २०४७</div>
+    <h1 id="mainTitle">॥ स्वतंत्र प्रहरी ॥</h1>
+    <div class="subtitle">भीलवाड़ा-जयपुर | शुचिता मार्ग</div>
 
-    <div style="text-align: left; font-size: 0.7em; color: #888; margin-top: 15px;">मंज़िल की ओर प्रगति: <span id="prog-percent">०%</span></div>
+    <div class="progress-box">२०४७ की ओर प्रगति: <span id="prog-percent">०%</span></div>
     <div class="progress-container">
         <div class="progress-bar" id="myBar"></div>
     </div>
 
-    <div class="signal-box">
-        ॥ विशेष सिग्नल ॥<br><small>सोनू भाई, आज बाज़ार में 'शुचिता' का अवसर है।</small>
+    <div class="signal-box" id="main-signal">
+        <span style="color: #555;">बाज़ार का ध्यान जारी है...</span>
     </div>
 
-    <div class="card" style="border-left-color: #ff00ff;">
-        <h3 style="margin: 0; color: #ff00ff; font-size: 1em;">॥ भविष्य की तिजोरी ॥</h3>
-        <p style="font-size: 0.75em; color: #888;">आज के ₹500 का २०२७-४७ में मूल्य:</p>
-        <div id="future-value" class="val-text">₹0</div>
+    <div class="card">
+        <h3 style="margin: 0 0 10px 0; color: var(--neon-green); font-size: 1em;">मासिक आहुति (SIP)</h3>
+        <div class="fund-row"><span>SBI Contra</span> <span>₹1,000</span></div>
+        <div class="fund-row"><span>SBI Midcap</span> <span>₹1,000</span></div>
+        <div class="fund-row"><span>SBI Small Cap</span> <span>₹500</span></div>
+        <div style="text-align: right; color: var(--gold); font-weight: bold; margin-top: 8px;">कुल: ₹2,500</div>
     </div>
 
-    <div class="card" style="border-left-color: #00ffcc;">
-        <h3 style="margin: 0; color: #00ffcc; font-size: 1em;">प्रतीक्षा और नीति के नाम संदेश</h3>
-        <div class="diary-box" id="diary-msg">
-            "आज बाज़ार की हलचल है, पर मेरा संकल्प तुम्हारे भविष्य के लिए अटल है। - पिता"
-        </div>
+    <div class="card vault-card">
+        <h3 style="margin: 0; color: var(--vault-pink); font-size: 1em;">॥ भविष्य की तिजोरी ॥</h3>
+        <p style="font-size: 0.75em; color: #888; margin: 4px 0;">आज के ₹500 का २०२७-४७ में अनुमानित मूल्य:</p>
+        <div id="future-value" class="future-val">₹0</div>
     </div>
 
-    <div id="countdown" class="timer-text" style="margin-top: 15px;">काल गणना...</div>
+    <div id="countdown" class="timer-text">काल गणना...</div>
+
+    <p class="footer">ID: laxmidhobi199701 | स्वतंत्र प्रहरी २.०</p>
 </div>
 
 <script>
-    // १. प्रगति पट्टी का गणित
-    function updateProgress() {
+    // १. प्रगति और काल गणना (Time-Table Security)
+    function updateSystems() {
         const start = new Date("February 13, 2026").getTime();
         const end = new Date("January 25, 2047").getTime();
         const now = new Date().getTime();
         
-        const total = end - start;
-        const current = now - start;
-        const percent = Math.min(Math.max((current / total) * 100, 0), 100).toFixed(4);
-        
+        // प्रगति बार
+        const percent = Math.min(Math.max(((now - start) / (end - start)) * 100, 0), 100).toFixed(4);
         document.getElementById("myBar").style.width = percent + "%";
         document.getElementById("prog-percent").innerHTML = percent + "%";
-    }
 
-    // २. तिजोरी का गणित (Compound Interest)
-    function calculatePower() {
-        const yearsLeft = (new Date("January 25, 2047") - new Date()) / (1000*60*60*24*365.25);
-        const val = 500 * Math.pow(1.15, yearsLeft);
-        document.getElementById('future-value').innerHTML = "₹" + Math.round(val).toLocaleString('hi-IN');
-    }
-
-    // ३. उलटी गिनती
-    function updateTimer() {
-        const diff = new Date("January 25, 2047") - new Date();
+        // उलटी गिनती
+        const diff = end - now;
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         document.getElementById('countdown').innerHTML = "तपस्या के " + days + " दिन शेष हैं।";
+
+        // सिद्धि दिवस (२८ तारीख)
+        if (new Date().getDate() === 28) {
+            document.getElementById("mainBody").style.background = "linear-gradient(145deg, #1a1500, #050505)";
+            document.getElementById("mainTitle").innerHTML = "॥ सिद्धि दिवस: २८ ॥";
+        }
     }
 
-    setInterval(() => { updateProgress(); updateTimer(); }, 1000);
-    updateProgress(); calculatePower(); updateTimer();
+    // २. तिजोरी का गणित (Compound Interest @ 15%)
+    function calculatePower() {
+        const target = new Date("January 25, 2047");
+        const yearsLeft = (target - new Date()) / (1000 * 60 * 60 * 24 * 365.25);
+        const fValue = 500 * Math.pow(1.15, yearsLeft);
+        document.getElementById('future-value').innerHTML = "₹" + Math.round(fValue).toLocaleString('hi-IN');
+    }
+
+    // ३. सिग्नल और रेड अलर्ट (Simulation)
+    function updateSignal(drop) {
+        const sBox = document.getElementById('main-signal');
+        if (drop <= -3.0) {
+            sBox.style.background = "#330000";
+            sBox.style.borderColor = "#ff0000";
+            sBox.innerHTML = "<b style='color: #ff0000;'>॥ महा-शुचिता अलर्ट ॥</b><br><small>बाज़ार में बड़ा अवसर है, आज निवेश बढ़ाएं!</small>";
+        } else {
+            sBox.classList.add('pulse-green');
+            sBox.innerHTML = "<b>॥ विशेष सिग्नल ॥</b><br><small>सोनू भाई, बाज़ार में 'शुचिता' का अवसर है।</small>";
+        }
+    }
+
+    // एक्टिवेशन
+    setInterval(updateSystems, 60000);
+    updateSystems();
+    calculatePower();
+    setTimeout(() => updateSignal(-0.5), 2000); // २ सेकंड बाद सिग्नल जाग्रत
 </script>
 
 </body>
