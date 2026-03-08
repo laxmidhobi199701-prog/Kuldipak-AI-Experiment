@@ -1,0 +1,23 @@
+{
+  "name": "स्वतंत्र प्रहरी - २०४७ संकल्प",
+  "short_name": "प्रहरी",
+  "description": "सोनू भाई का प्रतीक्षा और नीति के लिए वित्तीय संकल्प",
+  "start_url": "Prahari_Mukhauta.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#ffbb00",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
