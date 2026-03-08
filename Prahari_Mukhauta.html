@@ -10,28 +10,30 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="logo.png">
 
-    <title>॥ स्वतंत्र प्रहरी ॥</title>
+    <title>॥ स्वतंत्र प्रहरी ५.० ॥</title>
     <style>
-        :root { --neon: #00ffcc; --gold: #ffbb00; --bg: #000; --vault: #ff00ff; }
-        body { background: var(--bg); color: var(--neon); font-family: 'Segoe UI', serif; margin: 0; text-align: center; transition: background 1s ease; }
+        :root { --neon: #00ffcc; --gold: #ffbb00; --bg: #000; --goal: #00ff00; }
+        body { background: var(--bg); color: var(--neon); font-family: 'Segoe UI', serif; margin: 0; text-align: center; }
         
-        /* १. प्रवेश द्वार: पासवर्ड लॉक */
-        #lockScreen { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.8s ease-in-out; }
-        .lock-logo { width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 20px; box-shadow: 0 0 25px rgba(255,187,0,0.3); }
-        input { background: #0a0a0a; border: 1px solid #333; color: var(--gold); padding: 15px; border-radius: 15px; text-align: center; font-size: 1.5em; width: 220px; outline: none; margin-bottom: 20px; letter-spacing: 5px; }
-        .btn-entry { background: var(--gold); border: none; padding: 12px 40px; border-radius: 12px; font-weight: bold; font-size: 1.1em; color: #000; cursor: pointer; }
+        /* १. सुरक्षा द्वार */
+        #lockScreen { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .lock-logo { width: 120px; border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 20px; box-shadow: 0 0 25px rgba(255,187,0,0.3); }
+        input { background: #0a0a0a; border: 1px solid #333; color: var(--gold); padding: 15px; border-radius: 15px; text-align: center; font-size: 1.5em; width: 200px; outline: none; margin-bottom: 20px; letter-spacing: 5px; }
+        .btn-entry { background: var(--gold); border: none; padding: 12px 40px; border-radius: 12px; font-weight: bold; cursor: pointer; color: #000; }
 
         /* २. मुख्य डेशबोर्ड */
-        .main-content { max-width: 450px; margin: auto; padding: 20px; display: none; opacity: 0; }
-        .card { background: #080808; border-radius: 25px; padding: 20px; margin: 15px 0; border: 1px solid #1a1a1a; border-left: 5px solid var(--gold); text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .container { max-width: 450px; margin: auto; padding: 20px; display: none; }
+        .card { background: #080808; border-radius: 25px; padding: 20px; margin: 15px 0; border: 1px solid #1a1a1a; border-left: 6px solid var(--gold); text-align: left; position: relative; overflow: hidden; }
         
         /* प्रगति पट्टी */
-        .prog-container { background: #111; height: 16px; border-radius: 20px; overflow: hidden; border: 1px solid #222; margin-top: 10px; }
-        .bar-fill { background: linear-gradient(90deg, var(--gold), var(--neon)); height: 100%; width: 0%; transition: 3s cubic-bezier(0.1, 1, 0.1, 1); }
+        .bar-container { background: #111; height: 14px; border-radius: 10px; border: 1px solid #222; margin-top: 10px; }
+        .bar-fill { background: linear-gradient(90deg, var(--gold), var(--neon)); height: 100%; width: 0%; transition: 2s ease-out; }
 
-        .vault-amt { font-size: 2.3em; color: #fff; font-weight: bold; text-shadow: 0 0 20px var(--vault); text-align: center; margin: 10px 0; }
-        .hridaya-msg { font-style: italic; color: #ccc; font-size: 0.9em; line-height: 1.5; margin-top: 10px; }
-        .footer-info { font-size: 0.6em; color: #333; margin-top: 40px; letter-spacing: 1px; }
+        /* १० करोड़ की चमक */
+        .vault-amt { font-size: 2.4em; color: #fff; font-weight: bold; text-shadow: 0 0 20px var(--goal); text-align: center; margin: 10px 0; }
+        .step-up-box { background: rgba(0, 255, 204, 0.05); border: 1px dashed var(--neon); padding: 12px; border-radius: 15px; margin-top: 10px; font-size: 0.85em; }
+        
+        .footer { font-size: 0.6em; color: #333; margin-top: 40px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -39,118 +41,114 @@
     <div id="lockScreen">
         <img src="logo.png" class="lock-logo">
         <h2 style="color:var(--gold); margin:0;">॥ स्वतंत्र प्रहरी ॥</h2>
-        <p style="color:#444; font-size:0.7em; margin-bottom:30px;">सोनू भाई | २८-०८-१९९४</p>
+        <p style="color:#444; font-size:0.7em; margin-bottom:30px;">सोनू भाई | सिद्धि ५.०</p>
         <input type="password" id="passCode" placeholder="••••">
         <button class="btn-entry" onclick="unlock()">प्रवेश करें</button>
-        <p id="error" style="color:red; display:none; margin-top:15px; font-size:0.8em;">शुचिता का प्रमाण (सही कोड) दें।</p>
     </div>
 
-    <div class="main-content" id="prahariContent">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div class="container" id="mainApp">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <div style="text-align:left;">
-                <h2 style="color:var(--gold); margin:0;">॥ सिद्धि मार्ग ॥</h2>
-                <small style="color:#555;">भीलवाड़ा धर्मशाला - जयपुर</small>
+                <h3 style="color:var(--gold); margin:0;">॥ सिद्धि मार्ग ॥</h3>
+                <small style="color:#555;">भीलवाड़ा धर्मशाला संकल्प</small>
             </div>
             <img src="logo.png" style="width:45px; border-radius:50%; border:1px solid var(--gold);">
         </div>
 
+        <div class="card" style="border-left-color: var(--goal);">
+            <div style="color:var(--goal); font-weight:bold; font-size:0.9em;">॥ १० करोड़ का संकल्प ॥</div>
+            <div id="v-val" class="vault-amt">₹0</div>
+            
+            <div id="guide-msg" class="step-up-box">
+                गणना की जा रही है...
+            </div>
+        </div>
+
         <div class="card">
             <div style="font-size:0.8em; color:#888; display:flex; justify-content:space-between;">
-                <span>२०४७ की ओर प्रगति:</span>
+                <span>२०४७ की ओर यात्रा:</span>
                 <span id="percent" style="color:var(--neon)">0.000000%</span>
             </div>
-            <div class="prog-container"><div class="bar-fill" id="bar"></div></div>
+            <div class="bar-container"><div class="bar-fill" id="bar"></div></div>
         </div>
 
-        <div class="card" style="border-left-color:var(--vault);">
-            <div style="color:var(--vault); font-weight:bold; font-size:0.9em;">॥ भविष्य की तिजोरी ॥</div>
-            <div style="font-size:0.7em; color:#555;">₹500 की २०२७-४७ में रूहानी शक्ति:</div>
-            <div id="v-val" class="vault-amt">₹0</div>
+        <div class="card" style="border-left-color: #0088ff;">
+            <div style="color:#0088ff; font-weight:bold; font-size:0.85em;">हृदय संवाद</div>
+            <div id="hridaya" style="font-size:0.9em; font-style:italic; margin-top:8px; color:#ccc;">
+                संकल्प ही सिद्धि है।
+            </div>
         </div>
 
-        <div class="card" style="border-left-color:var(--neon);">
-            <div style="color:var(--neon); font-weight:bold; font-size:0.9em;">प्रतीक्षा और नीति हेतु संदेश</div>
-            <div id="msg" class="hridaya-msg">पहरा जारी है...</div>
-        </div>
-
-        <div id="signal" class="card" style="border-left-color:#fff; text-align:center;">
-            <span style="font-size:0.8em; color:#ccc;">॥ शुक्राचार्य नीति: बाज़ार में शुचिता का अवसर है ॥</span>
-        </div>
-
-        <p id="timer" style="color:#0088ff; font-weight:bold; font-size:0.85em;"></p>
-        <div class="footer-info">ID: laxmidhobi199701 | ऋणानुबंध ४.२</div>
+        <p id="timer" style="color:#444; font-size:0.75em; font-weight:bold;"></p>
+        <div class="footer">ID: laxmidhobi199701 | स्वतंत्र प्रहरी v5.0</div>
     </div>
 
 <script>
-    // १. अनलॉक मैकेनिज्म (सोनू भाई का गुप्त कोड)
     function unlock() {
-        const pin = document.getElementById('passCode').value;
-        if(pin === "1994") {
-            const ls = document.getElementById('lockScreen');
-            ls.style.opacity = "0";
-            setTimeout(() => {
-                ls.style.display = "none";
-                const main = document.getElementById('prahariContent');
-                main.style.display = "block";
-                setTimeout(() => main.style.opacity = "1", 100);
-                guardianEngine();
-            }, 800);
+        if(document.getElementById('passCode').value === "1994") {
+            document.getElementById('lockScreen').style.display = "none";
+            document.getElementById('mainApp').style.display = "block";
+            startGuardian();
         } else {
-            document.getElementById('error').style.display = "block";
+            alert("मशीनी तर्क नहीं, रूहानी कोड (१९९४) दें।");
             document.getElementById('passCode').value = '';
         }
     }
 
-    // २. प्रहरी इंजन (Core Logic)
-    function guardianEngine() {
+    function startGuardian() {
         const sDate = new Date("February 13, 2026").getTime();
         const eDate = new Date("January 25, 2047").getTime();
 
-        function sync() {
-            const now = new Date().getTime();
+        function update() {
+            const now = new Date();
+            const nowTime = now.getTime();
             
-            // ६ दशमलव वाली प्रगति
-            const p = (((now - sDate) / (eDate - sDate)) * 100).toFixed(6);
+            // १. १० करोड़ का 'सिद्धि वृद्धि' (Step-up) गणित
+            // हम मान रहे हैं कि आप हर साल अपनी SIP को २०% बढ़ाएंगे १० करोड़ के लिए
+            const yrsPassed = (nowTime - sDate) / (1000*60*60*24*365.25);
+            const yearsFloor = Math.floor(yrsPassed);
+            const monthlyRate = 0.15 / 12;
+            const initialSIP = 2500;
+            const currentYearSIP = initialSIP * Math.pow(1.20, yearsFloor);
+            
+            // रूहानी चक्रवृद्धि (Current Value)
+            const totalVal = currentYearSIP * ((Math.pow(1 + monthlyRate, yrsPassed * 12) - 1) / monthlyRate);
+            document.getElementById('v-val').innerHTML = "₹" + Math.round(totalVal).toLocaleString('hi-IN');
+
+            // २. सिद्धि मार्गदर्शक (अगले साल की वृद्धि का आदेश)
+            const nextSIP = Math.round(currentYearSIP * 1.20);
+            const topupNeeded = nextSIP - Math.round(currentYearSIP);
+            const bDay = new Date(now.getFullYear(), 7, 28);
+            if(now > bDay) bDay.setFullYear(now.getFullYear() + 1);
+            
+            const daysLeft = Math.ceil((bDay - now) / (1000*60*60*24));
+            document.getElementById('guide-msg').innerHTML = 
+                `सोनू भाई, अगले <b>२८ अगस्त</b> को अपने संकल्प में <b>₹${topupNeeded}</b> की आहुति और जोड़ें। (अगली SIP: ₹${nextSIP})`;
+
+            // ३. २०४७ की प्रगति
+            const p = (((nowTime - sDate) / (eDate - sDate)) * 100).toFixed(6);
             document.getElementById('bar').style.width = p + "%";
             document.getElementById('percent').innerHTML = p + "%";
 
-            // भविष्य की तिजोरी (15% रूहानी वृद्धि)
-            const yrs = (eDate - now) / (1000*60*60*24*365.25);
-            const val = 500 * Math.pow(1.15, yrs);
-            document.getElementById('v-val').innerHTML = "₹" + Math.round(val).toLocaleString('hi-IN');
-
-            // २८ तारीख और गुप्त संदेश (Time-Capsule)
-            const today = new Date();
-            const msgBox = document.getElementById('msg');
-            
-            if(today.getDate() === 28) {
-                msgBox.innerHTML = "सोनू भाई, आज **सिद्धि दिवस** है। भीलवाड़ा की मिट्टी से आज का संकल्प जुड़ा है।";
-                document.body.style.background = "#0a0800";
-            } else if(today.getFullYear() >= 2047) {
-                msgBox.innerHTML = "॥ अंतिम संदेश ॥ प्रतीक्षा और नीति, पिता का संकल्प पूर्ण हुआ। यह साम्राज्य तुम्हारा है।";
-            } else if(today.getFullYear() >= 2040) {
-                msgBox.innerHTML = "प्रतीक्षा और नीति, अब तुम बड़ी हो गई हो। शुचिता को अपना गहना बनाना।";
+            // ४. रूहानी संदेश
+            const hBox = document.getElementById('hridaya');
+            if(now.getDate() === 28) {
+                hBox.innerHTML = "आज आपका जन्मदिवस मास है, अपनी बेटियों के लिए संकल्प को और गहरा करें।";
             } else {
-                msgBox.innerHTML = "आज की ₹2,500 की आहुति, उनके कल की मुस्कान है। पहरा जारी है।";
+                hBox.innerHTML = "बाज़ार मशीनी है, पर आपका १० करोड़ का लक्ष्य रूहानी है। पहरा जारी है।";
             }
 
-            // काल गणना
-            const d = Math.floor((eDate - now) / (1000*60*60*24));
-            document.getElementById('timer').innerHTML = "सिद्धि दिवस के " + d + " दिन शेष हैं।";
+            const d = Math.floor((eDate - nowTime) / (1000*60*60*24));
+            document.getElementById('timer').innerHTML = "सिद्धि के " + d + " दिन शेष हैं।";
         }
-        setInterval(sync, 1000);
-        sync();
+        setInterval(update, 1000);
+        update();
     }
 
-    // ३. PWA (एप्लीकेशन) सर्विस वर्कर एक्टिवेशन
+    // PWA रजिस्ट्रेशन
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js').then(() => console.log('कवच सक्रिय।'));
-        });
+        navigator.serviceWorker.register('./sw.js');
     }
-
-    // Enter Key Support
-    document.getElementById("passCode").addEventListener("keyup", (e) => { if(e.key === "Enter") unlock(); });
 </script>
 </body>
 </html>
