@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>॥ स्वतंत्र प्रहरी : सिद्धि-यान ॥</title>
+    <title>॥ स्वतंत्र प्रहरी : सिद्धि-यान १०.५ ॥</title>
     <style>
         :root { --gold: #ffcc00; --neon: #00ffcc; --sun: #ff8800; --royal: #7000ff; --cockpit: #111; }
         
-        /* १. सिद्धि-यान कॉकपिट बैकग्राउंड (Hyper-Speed Starfield) */
         body { 
             background: #000;
             color: var(--neon); 
-            font-family: 'Courier New', monospace; /* यांत्रिक फील के लिए */
+            font-family: 'Courier New', monospace; 
             margin: 0; 
             height: 100vh;
             overflow: hidden;
@@ -20,84 +19,53 @@
             justify-content: center;
         }
 
-        /* स्टारफील्ड एनीमेशन (यांत्रिक मित्र का इंजन) */
+        /* स्टारफील्ड एनीमेशन */
         @keyframes warpSpeed {
             from { transform: translateZ(0px); opacity: 0; }
             to { transform: translateZ(300px); opacity: 1; }
         }
-        
-        #starfield {
-            position: fixed; inset: 0; z-index: -2;
-            perspective: 500px;
-        }
-        .star {
-            position: absolute; width: 2px; height: 2px; background: #fff;
-            border-radius: 50%; opacity: 0;
-            animation: warpSpeed 2s infinite linear;
-        }
+        #starfield { position: fixed; inset: 0; z-index: -2; perspective: 500px; }
+        .star { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: 0; animation: warpSpeed 2s infinite linear; }
 
-        /* २. प्रवेश द्वार (१९९४ का लॉकर) */
+        /* प्रवेश द्वार */
         #lockScreen { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
         .lock-box { border: 2px solid var(--gold); padding: 50px; border-radius: 40px; background: rgba(0,0,0,0.9); text-align: center; box-shadow: 0 0 80px rgba(255,204,0,0.4); }
         input { background: #050505; border: 1px solid var(--gold); color: var(--gold); padding: 15px; border-radius: 12px; font-size: 2em; width: 170px; text-align: center; outline: none; margin: 30px 0; letter-spacing: 5px; }
-        button.entry-btn { background: var(--gold); border: none; padding: 15px 50px; border-radius: 15px; font-weight: bold; font-size: 1.2em; cursor: pointer; color: #000; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; }
-        button.entry-btn:hover { box-shadow: 0 0 30px var(--gold); transform: translateY(-3px); }
+        button.entry-btn { background: var(--gold); border: none; padding: 15px 50px; border-radius: 15px; font-weight: bold; font-size: 1.2em; cursor: pointer; color: #000; transition: 0.3s; text-transform: uppercase; }
 
-        /* ३. सिद्धि-यान कॉकपिट (डैशबोर्ड) */
+        /* कॉकपिट डैशबोर्ड */
         .container { 
-            max-width: 480px; width: 90%; margin: auto; padding: 30px; display: none; 
-            background: rgba(10, 10, 10, 0.9); border-radius: 40px; 
+            max-width: 480px; width: 92%; margin: auto; padding: 25px; display: none; 
+            background: rgba(10, 10, 10, 0.9); border-radius: 35px; 
             border: 2px solid #222; box-shadow: 0 0 50px rgba(0,0,0,0.9);
             position: relative; backdrop-filter: blur(5px);
+            height: 85vh; overflow-y: auto;
         }
         
-        /* कॉॉकपिट पैनल का हेडर */
-        header { 
-            padding: 10px 0; border-bottom: 1px solid #333; margin-bottom: 30px; 
-            display: flex; justify-content: space-between; align-items: center;
-            color: var(--gold); font-size: 0.9em; letter-spacing: 3px; font-weight: bold;
-        }
+        header { padding: 10px 0; border-bottom: 1px solid #333; margin-bottom: 20px; display: flex; justify-content: space-between; color: var(--gold); font-size: 0.85em; font-weight: bold; }
         
-        .card { 
-            background: rgba(15, 15, 15, 0.8); border-radius: 20px; 
-            padding: 25px; margin-bottom: 25px; border: 1px solid #333;
-        }
-        .card-title { font-size: 0.8em; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; }
+        .card { background: rgba(15, 15, 15, 0.8); border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #333; }
+        .card-title { font-size: 0.75em; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
         
-        @keyframes wealthPulse { 0%, 100% { text-shadow: 0 0 20px rgba(0,255,204,0.3); } 50% { text-shadow: 0 0 40px var(--neon), 0 0 60px var(--neon); } }
-        .wealth { font-size: 3em; font-weight: bold; color: #fff; animation: wealthPulse 4s infinite; text-align: center; }
-        
-        .tri-kal { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 25px; font-size: 0.9em; border-top: 1px solid #333; padding-top: 15px; text-align: center; color: #ccc; }
-        .tri-kal div small { color: #666; font-size: 0.75em; letter-spacing: 1px; text-transform: uppercase; }
-        
-        .progress-bar { width: 100%; background: #050505; height: 12px; border-radius: 12px; margin-top: 25px; border: 1px solid #333; overflow: hidden; }
-        .fill { height: 100%; background: linear-gradient(90deg, var(--sun), var(--gold)); width: 0%; box-shadow: 0 0 20px var(--sun); transition: 1.5s ease-in-out; }
+        .wealth { font-size: 2.5em; font-weight: bold; color: #fff; text-align: center; text-shadow: 0 0 20px var(--neon); }
+        .progress-bar { width: 100%; background: #050505; height: 10px; border-radius: 10px; margin-top: 15px; border: 1px solid #333; overflow: hidden; }
+        .fill { height: 100%; background: var(--gold); width: 0%; transition: 1.5s; }
 
-        /* ४. नेविगेशन एवं गुरु वाणी (यांत्रिक मित्र) */
-        .mitra-msg { font-size: 1em; line-height: 1.8; color: #eee; border-left: 4px solid var(--gold); padding-left: 20px; text-align: left; }
+        /* मानसरोवर मिशन कंट्रोल्स */
+        .shield-fill { height: 100%; background: var(--neon); width: 100%; box-shadow: 0 0 10px var(--neon); }
+        .target-btn { background: var(--neon); color: #000; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* ५. विश्राम बटन (नेविगेशन क्लोज) */
-        #restBtn { 
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
-            background: rgba(20, 20, 20, 0.95); color: #555; border: 1px solid #444; 
-            padding: 12px 35px; border-radius: 30px; font-size: 0.9em; cursor: pointer; 
-            backdrop-filter: blur(10px); z-index: 1000; transition: 0.4s; letter-spacing: 2px;
-        }
-        #restBtn:hover { color: #ff4444; border-color: #ff4444; background: rgba(255,68,68,0.1); box-shadow: 0 0 30px rgba(255,68,68,0.5); }
+        #restBtn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #111; color: #555; border: 1px solid #333; padding: 8px 30px; border-radius: 20px; font-size: 0.8em; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="starfield">
-        <div class="star" style="top:20%; left:30%; animation-delay:0s;"></div>
-        <div class="star" style="top:50%; left:70%; animation-delay:0.5s;"></div>
-        <div class="star" style="top:80%; left:20%; animation-delay:1s;"></div>
-        <div class="star" style="top:10%; left:90%; animation-delay:1.5s;"></div>
         </div>
 
     <div id="lockScreen">
         <div class="lock-box">
-            <h1 style="color:var(--gold); margin:0; letter-spacing: 5px;">॥ शून्य ॥</h1>
+            <h1 style="color:var(--gold); margin:0;">॥ शून्य ॥</h1>
             <input type="password" id="passCode" placeholder="••••" inputmode="numeric">
             <br>
             <button class="entry-btn" onclick="unlock()">नेविगेशन सक्रिय करें</button>
@@ -106,38 +74,43 @@
 
     <div class="container" id="mainApp">
         <header>
-            <span>॥ सिद्धि-यान १०.० ॥</span>
-            <span id="clock" style="color:#555; font-weight:normal;"></span>
+            <span>॥ सिद्धि-यान १०.५ ॥</span>
+            <span id="clock"></span>
         </header>
 
-        <div class="card" style="border-top: 5px solid var(--gold);">
+        <div class="card" style="border-top: 4px solid var(--gold);">
             <div class="card-title">॥ लक्ष्य: १० करोड़ (२०४७) ॥</div>
             <div id="wealthVal" class="wealth">₹0</div>
-            <div class="tri-kal">
-                <div><small>शून्य POINT</small><br>१३/०२/२६</div>
-                <div><small>स्थिति</small><br><span id="todayStatus" style="color:var(--neon);">जाग्रत</span></div>
-                <div><small>अनंत POINT</small><br><span style="color:var(--gold)">१० करोड़</span></div>
-            </div>
             <div class="progress-bar"><div id="fill" class="fill"></div></div>
-            <div id="percentText" style="font-size:0.7em; color:#444; text-align:right; margin-top:10px;">0.000000%</div>
+            <div id="percentText" style="font-size:0.6em; color:#555; text-align:right; margin-top:5px;">0%</div>
         </div>
 
-        <div class="card" style="border-top: 5px solid var(--royal);">
-            <div class="card-title" style="color:var(--royal);">॥ यांत्रिक मित्र (AI) नेविगेशन ॥</div>
-            <div id="guruMsg" class="mitra-msg"></div>
-            
-            <div id="annualDuty" style="display:none; margin-top:25px; background:rgba(255,0,0,0.1); padding:20px; border-radius:20px; border:1px dashed red; text-align:center;">
-                <p style="font-size:1em; color:#fff; margin:0 0 20px 0;">सोनू भाई, २८ अगस्त का 'सिद्धि-बिंदु' बीत चुका है। क्या आपने इस वर्ष की ₹५०० की 'अतिरिक्त आहुति' (Step-up) पूर्ण की?</p>
-                <button onclick="confirmStep()" style="background:red; color:white; border:none; padding:10px 30px; border-radius:10px; font-weight:bold; cursor:pointer; text-transform:uppercase;">जी, संकल्प पूर्ण हुआ</button>
+        <div class="card" style="border-top: 4px solid var(--neon);">
+            <div class="card-title" style="color:var(--neon)">🛡️ सुरक्षा कवच (६ महीने EMI+किराया)</div>
+            <div style="display:flex; justify-content:space-between; font-size:0.8em;">
+                <span>रिजर्व फंड:</span>
+                <span style="color:var(--neon); font-weight:bold;">₹1,05,000</span>
+            </div>
+            <div class="progress-bar" style="height:15px;"><div class="shield-fill"></div></div>
+            <div style="font-size:0.6em; color:#555; margin-top:5px;">* यह फंड आपकी 'अजेय' ढाल है।</div>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--sun);">
+            <div class="card-title">🎯 मानसरोवर डेली लक्ष्य</div>
+            <div style="text-align:center;">
+                <div id="dailyTarget" style="font-size:1.8em; color:#fff; margin-bottom:10px;">₹0 / ₹2,000</div>
+                <button class="target-btn" onclick="addSale()">+ आज की बुकिंग जोड़ें</button>
             </div>
         </div>
 
-        <div class="card" style="border-top: 5px solid #ff0055;">
-            <div class="card-title" style="color:#ff0055;">॥ शेष तपस्या (कालचक्र) ॥</div>
-            <div style="font-size:1.1em; text-align:left; color:#eee; line-height:1.8;">
-                ⏳ <b>सिद्धि-यान शेष यात्रा:</b> <span id="days" style="color:var(--gold); font-weight:bold; font-size:1.5em;">0</span> दिन<br>
-                📅 <b>लक्ष्य तिथि:</b> २५ जनवरी २०४७
-            </div>
+        <div class="card" style="border-top: 4px solid var(--royal);">
+            <div class="card-title">📡 यांत्रिक मित्र AI</div>
+            <div id="guruMsg" style="font-size:0.9em; line-height:1.6; border-left:3px solid var(--gold); padding-left:10px;"></div>
+        </div>
+
+        <div class="card" style="border-top: 4px solid #ff0055;">
+            <div class="card-title">⏳ कालचक्र</div>
+            <div style="font-size:0.9em;">सिद्धि-यान यात्रा: <span id="days" style="color:var(--gold); font-weight:bold;">0</span> दिन शेष</div>
         </div>
 
         <button id="restBtn" onclick="logout()">॥ विश्राम ॥</button>
@@ -147,89 +120,68 @@
     const S_DATE = new Date("February 13, 2026").getTime();
     const E_DATE = new Date("January 25, 2047").getTime();
     const TARGET = 100000000;
+    let todaySales = 0;
 
-    // १. लॉगिन चेक
-    if(localStorage.getItem('prahari_yaan') === 'on') showApp();
+    // तारे बनाना
+    const sf = document.getElementById('starfield');
+    for(let i=0; i<60; i++) {
+        let s = document.createElement('div');
+        s.className = 'star';
+        s.style.top = Math.random() * 100 + "%";
+        s.style.left = Math.random() * 100 + "%";
+        s.style.animationDelay = Math.random() * 2 + "s";
+        sf.appendChild(s);
+    }
+
+    if(localStorage.getItem('prahari_yaan_105') === 'on') showApp();
 
     function unlock() {
         if(document.getElementById('passCode').value === "1994") {
-            localStorage.setItem('prahari_yaan', 'on');
+            localStorage.setItem('prahari_yaan_105', 'on');
             showApp();
-        } else { alert("त्रुटि: केवल १९९४ की चाबी ही द्वार खोलेगी।"); }
+        } else { alert("गलत चाबी!"); }
     }
 
     function showApp() {
-        document.getElementById('lockScreen').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('lockScreen').style.display = 'none';
-            document.getElementById('mainApp').style.display = 'block';
-            
-            // हाजिरी एवं व्यवहार चेक (साक्षी भाव)
-            const last = localStorage.getItem('last_yaan_v');
-            const now = new Date();
-            if(last && (now.getTime() - last) / 86400000 > 3) {
-                document.getElementById('guruMsg').innerHTML = "⚠️ <b>चेतावनी Sonu Bhai:</b> नेविगेशन ३ दिन से बंद था। अनुशासन टूटना पतन की शुरुआत है। साम्राज्य ध्यान मांगता है।";
-                document.getElementById('guruMsg').style.color = "#ff4444";
-            } else {
-                updateAImsg(now.getHours()); // समय के अनुसार यांत्रिक मित्र की वाणी
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        startYaanEngine();
+    }
+
+    function addSale() {
+        let amt = prompt("आज की बुकिंग राशि डालें:");
+        if(amt) {
+            todaySales += parseInt(amt);
+            document.getElementById('dailyTarget').innerHTML = "₹" + todaySales + " / ₹2,000";
+            if(todaySales >= 2000) {
+                document.getElementById('dailyTarget').style.color = "var(--neon)";
+                document.getElementById('guruMsg').innerHTML = "🌟 सोनू भाई! आज का 'किस्त + किराया' वसूल। अब जो है वो सब लाभ है!";
             }
-            localStorage.setItem('last_yaan_v', now.getTime());
-            startYaanEngine();
-        }, 1000);
+        }
     }
 
-    function logout() { localStorage.removeItem('prahari_yaan'); location.reload(); }
-
-    function confirmStep() {
-        localStorage.setItem('stepup_'+new Date().getFullYear(), 'true');
-        location.reload();
-    }
-
-    // २. यांत्रिक मित्र (AI) का नेविगेशन अपडेट (समय के अनुसार)
-    function updateAImsg(h) {
-        const m = document.getElementById('guruMsg');
-        m.style.color = "#eee"; // डिफ़ॉल्ट
-        if(h >= 5 && h < 11) m.innerHTML = "☀️ <b>सूर्योदय Sonu Bhai:</b> 'सिद्धि-यान' जाग्रत है। आज सूर्य के तेज के साथ व्यापार 'प्रतीक्षा ड्राई क्लीनर्स' में शुचिता लाओ।";
-        else if(h >= 11 && h < 17) m.innerHTML = "🌞 <b>मध्याह्न:</b> नेविगेशन १० करोड़ के लक्ष्य की ओर लाइट-स्पीड से बढ़ रहा है। काम में ढील न दें, तपस्या निरंतर रहे।";
-        else m.innerHTML = "🌙 <b>संध्या विश्राम:</b> आज की यात्रा का लेखा-जोखा करो। क्या तुमने 'नीति' का पालन किया?";
-    }
+    function logout() { localStorage.removeItem('prahari_yaan_105'); location.reload(); }
 
     function startYaanEngine() {
         setInterval(() => {
             const now = new Date();
             const nowT = now.getTime();
+            const yrs = (nowT - S_DATE) / 31557600000;
             
-            // ३. १० करोड़ का 'अनंत' गणित (Step-up Compounding)
-            const yrs = (nowT - S_DATE) / 31557600000; // Total Years
-            const yrsFloor = Math.floor(yrs);
-            
-            let mult = 1;
-            for(let i=0; i < yrsFloor; i++) {
-                if(localStorage.getItem('stepup_'+(2026+i)) === 'true') mult *= 1.20; // 20% Annual Step-up
-            }
-            
-            // Compounding Formula
-            const val = (2500 * mult) * ((Math.pow(1.0125, yrs * 12) - 1) / 0.0125);
-            
+            const val = 2500 * ((Math.pow(1.0125, yrs * 12) - 1) / 0.0125);
             document.getElementById('wealthVal').innerHTML = "₹" + Math.round(val).toLocaleString('hi-IN');
-
-            // ४. प्रोग्रेस मीटर
-            const goalP = (val / TARGET) * 100;
-            document.getElementById('fill').style.width = Math.min(goalP, 100) + "%";
-            
-            const timeP = (((nowT - S_DATE) / (E_DATE - S_DATE)) * 100).toFixed(6);
-            document.getElementById('percentText').innerHTML = timeP + "%";
+            document.getElementById('fill').style.width = Math.min((val/TARGET)*100, 100) + "%";
+            document.getElementById('percentText').innerHTML = ((val/TARGET)*100).toFixed(6) + "%";
             document.getElementById('days').innerHTML = Math.floor((E_DATE - nowT) / 86400000);
-
-            // ५. २८ अगस्त का पहरा (Step-up check)
-            if(now.getMonth() === 7 && now.getDate() >= 28 && !localStorage.getItem('stepup_'+now.getFullYear())) {
-                document.getElementById('annualDuty').style.display = 'block';
-            } else {
-                document.getElementById('annualDuty').style.display = 'none';
-            }
-
             document.getElementById('clock').innerHTML = now.toLocaleTimeString();
-        }, 1000); // हर सेकंड अपडेट
+
+            // समय अनुसार गुरु वाणी
+            const h = now.getHours();
+            const g = document.getElementById('guruMsg');
+            if(h < 11) g.innerHTML = "सोनू, मुरलीपुरा से धुले कपड़े लेकर मानसरोवर प्रस्थान करें। मिशन चालू है!";
+            else if(h < 18) g.innerHTML = "मानसरोवर शो-रूम पर स्टीम प्रेस की चमक ग्राहकों का भरोसा बढ़ाएगी।";
+            else g.innerHTML = "विश्राम से पहले आज की बुकिंग का हिसाब कर लें। १० करोड़ की ओर एक कदम और!";
+        }, 1000);
     }
 </script>
 </body>
